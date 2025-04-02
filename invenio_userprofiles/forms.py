@@ -23,6 +23,7 @@ from wtforms import (
     StringField,
     SubmitField,
     validators,
+    BooleanField
 )
 from wtforms.validators import (
     DataRequired,
@@ -80,6 +81,87 @@ class ProfileForm(FlaskForm):
         validators=[Length(max=255)],
         filters=[strip_filter],
     )
+    
+    orcid = StringField(
+        # NOTE: Form label
+        _("Orcid"),
+        validators=[Length(max=255)],
+        filters=[strip_filter],
+    )
+
+    linkedIn = StringField(
+        # NOTE: Form label
+        _("LinkedIn"),
+        validators=[Length(max=255)],
+        filters=[strip_filter],
+    )
+    
+    genre = StringField(
+        # NOTE: Form label
+        _("Genre"),
+        validators=[Length(max=255)],
+        filters=[strip_filter],
+    )
+
+    university = StringField(
+        # NOTE: Form label
+        _("University"),
+        validators=[Length(max=255)],
+        filters=[strip_filter],
+    )
+    
+    languages = StringField(
+        # NOTE: Form label
+        _("Languages"),
+        filters=[strip_filter],
+    )
+    
+    identify = StringField(
+        # NOTE: Form label
+        _("Identify"),
+        filters=[strip_filter],
+    )
+    
+    faculty = StringField(
+        # NOTE: Form label
+        _("Faculty"),
+        filters=[strip_filter],
+    )
+    
+    department = StringField(
+        # NOTE: Form label
+        _("Department"),
+        filters=[strip_filter],
+    )
+    
+    career_stage = StringField(
+        # NOTE: Form label
+        _("Career_stage"),
+        filters=[strip_filter],
+    )
+    
+    expertise_1 = StringField(
+        # NOTE: Form label
+        _("expertise_1"),
+        filters=[strip_filter],
+    )
+    expertise_2 = StringField(
+        # NOTE: Form label
+        _("expertise_2"),
+        filters=[strip_filter],
+    )
+    keywords = StringField(
+        # NOTE: Form label
+        _("keywords"),
+        filters=[strip_filter],
+    )
+    research_area = StringField(
+        # NOTE: Form label
+        _("research_area"),
+        filters=[strip_filter],
+    )
+    
+    research_group = BooleanField()
 
     def validate_username(self, field):
         """Wrap username validator for WTForms."""

@@ -23,7 +23,7 @@ class AnonymousUserProfile:
 class UserProfileProxy:
     """Proxy for a user that allows mapping the form to the user object."""
 
-    _profile_attrs = ["full_name", "affiliations"]
+    _profile_attrs = ["full_name", "affiliations","orcid","linkedIn","genre","university","languages","identify","faculty","department","research_group","career_stage","expertise_1","expertise_2","keywords","research_area"]
     _preferences_attrs = ["email_visibility", "visibility", "locale", "timezone"]
     _read_only_attrs = ["email_repeat"]
     _aliases = {"email_repeat": "email", "user_id": "id"}
