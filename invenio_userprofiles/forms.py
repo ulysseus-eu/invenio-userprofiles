@@ -84,8 +84,7 @@ class ProfileForm(FlaskForm):
     
     profile_genre = StringField(filters=[strip_filter])
     profile_university = StringField(filters=[strip_filter])
-    profile_orcid = StringField(filters=[strip_filter])
-    profile_linkedIn = StringField(filters=[strip_filter])
+    profile_links = StringField(filters=[strip_filter])
     profile_languages =  StringField(filters=[strip_filter])
     profile_identify =  StringField(filters=[strip_filter])
     profile_faculty =  StringField(filters=[strip_filter])

@@ -27,8 +27,7 @@ class UserProfileProxy:
     keys_profile_main_tabs = [
     "profile_genre",
     "profile_university",
-    "profile_orcid",
-    "profile_linkedIn",
+    "profile_links",
     "profile_faculty",
     "profile_department",
     "profile_research_group",
