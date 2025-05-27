@@ -25,22 +25,27 @@ class UserProfileProxy:
 
     # profile main tabs
     keys_profile_main_tabs = [
-    "profile_genre",
-    "profile_university",
+    "Gender",
+    "University",
+    "Affiliation_to_entities",
+    "family_name",
+    "given_name",
+    "orcid",
+    "linkedin",
     "profile_links",
-    "profile_faculty",
-    "profile_department",
-    "profile_research_group",
-    "profile_career_stage",
-    "profile_keywords",
-    "profile_if_not_please_state_the_full_name_of_the_principal_investigator_of_your_research_group_please_use_this_format_first_name_last_name",
-    "profile_if_not_please_state_the_full_name_of_the_principal_investigator_of_your_research_group_please_use_this_format_first_name_last_name_write_name",
-    "profile_languages",
-    "profile_identify",
+    "Faculty_Center_Institute",
+    "Department",
+    "Research_Group_member",
+    "Career_stage",
+    "Additional_Keywords",
+    "Principal_Investigator",
+    "Research_Group_PI",
+    "Languages",
+    "Expert_profile",
     "profile_please_indicate_the_full_name_of_your_research_group_in_english",
-    "profile_expertise_1",
-    "profile_expertise_2",
-    "profile_research_area",
+    "Areas_of_expertise",
+    "Main_Keywords",
+    "TRL_level",
     ]
     
     # profile projects tabs
@@ -53,7 +58,6 @@ class UserProfileProxy:
     "projects_has_your_research_resulted_in_a_knowledge_transfer_initiative",
     "projects_i_have_founded_a_spin_off_company_as_a_result_of_my_research",
     "projects_i_am_a_member_of_a_spin_off_company_linked_to_my_university",
-    "projects_are_you_the_principal_investigator_of_your_research_group",
     "projects_i_have_patented_the_results_of_my_research",
     "projects_i_am_an_active_member_of_a_business_chair_linked_to_my_university",
     "projects_other",
@@ -78,7 +82,6 @@ class UserProfileProxy:
     
     _profile_attrs.extend(keys_profile_main_tabs)
     _profile_attrs.extend(keys_profile_projects_tabs)
-    _profile_attrs.extend(keys_profile_research_groups_tabs)
     _profile_attrs.extend(keys_profile_research_groups_tabs)
     _profile_attrs.extend(keys_profile_consent_tabs)
     
