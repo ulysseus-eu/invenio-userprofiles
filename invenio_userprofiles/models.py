@@ -26,7 +26,9 @@ class UserProfileProxy:
     # profile main tabs
     keys_profile_main_tabs = [
     "Gender",
+    "email",
     "University",
+    "Others_initiatives",
     "Affiliation_to_entities",
     "family_name",
     "given_name",
@@ -50,16 +52,16 @@ class UserProfileProxy:
     
     # profile projects tabs
     keys_profile_projects_tabs = [
-    "projects_have_you_ever_designed_or_written_a_european_project_proposal",
-    "projects_have_you_ever_participated_in_a_granted_european_project_as_consortium_leader",
-    "projects_if_yes_please_name_the_project_s_you_have_coordinated_including_the_corresponding_call_s",
-    "projects_have_you_ever_participated_in_a_granted_european_project_as_a_member_of_consortium",
-    "projects_have_you_been_an_evaluator_of_eu_projects",
-    "projects_has_your_research_resulted_in_a_knowledge_transfer_initiative",
-    "projects_i_have_founded_a_spin_off_company_as_a_result_of_my_research",
-    "projects_i_am_a_member_of_a_spin_off_company_linked_to_my_university",
-    "projects_i_have_patented_the_results_of_my_research",
-    "projects_i_am_an_active_member_of_a_business_chair_linked_to_my_university",
+    "EU_proposal_writer",
+    "EU_project_leader",
+    "Coordinated_projects_and_calls",
+    "EU_project_member",
+    "EU_project_evaluator",
+    "Knowledge_Transfer",
+    "Founder_of_a_spin_off",
+    "Member_of_a_spin_off",
+    "Patents",
+    "Member_of_an_Industrial_Chair",
     "projects_other",
     "projects_other_response",
     "projects_affiliated_relevant_associations_platforms_clusters",
@@ -67,15 +69,15 @@ class UserProfileProxy:
     
     # profile research_groups tabs
     keys_profile_research_groups_tabs = [
-    "research_group_are_you_interested_in_participating_in_building_joint_research_groups_centered_around_shared_research_disciplines_within_ulysseus_partner_universities",
-    "research_group_most_relevant_to_your_research",
-    "research_group_information_on_the_most_significant_projects",
+    "Interest_in_Joint_Research_Groups",
+    "Relevant_publications",
+    "Relevant_projects",
     ]
     
     # profile consent tabs
     keys_profile_consent_tabs = [
     "consent_by_providing_my_consent",
-    "consent_profile_privacy_level",
+    "Visibility",
     ]
 
     _profile_attrs = ["full_name", "affiliations"]

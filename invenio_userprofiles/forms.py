@@ -84,6 +84,8 @@ class ProfileForm(FlaskForm):
     
     family_name = StringField(filters=[strip_filter])
     given_name = StringField(filters=[strip_filter])
+    email = StringField(filters=[strip_filter])
+    Others_initiatives = StringField(filters=[strip_filter])
     
     orcid = StringField(filters=[strip_filter])
     linkedin = StringField(filters=[strip_filter])
@@ -106,29 +108,29 @@ class ProfileForm(FlaskForm):
     Principal_Investigator  =  StringField(filters=[strip_filter])
     
     # profile projects tabs
-    projects_have_you_ever_designed_or_written_a_european_project_proposal = BooleanField()
-    projects_have_you_ever_participated_in_a_granted_european_project_as_consortium_leader = BooleanField()
-    projects_have_you_ever_participated_in_a_granted_european_project_as_a_member_of_consortium =BooleanField()
-    projects_have_you_been_an_evaluator_of_eu_projects = BooleanField()
-    projects_has_your_research_resulted_in_a_knowledge_transfer_initiative =BooleanField()
-    projects_if_yes_please_name_the_project_s_you_have_coordinated_including_the_corresponding_call_s = StringField(filters=[strip_filter])
-    projects_i_have_founded_a_spin_off_company_as_a_result_of_my_research = BooleanField()
-    projects_i_am_a_member_of_a_spin_off_company_linked_to_my_university= BooleanField()
-    projects_i_have_patented_the_results_of_my_research= BooleanField()
-    projects_i_am_an_active_member_of_a_business_chair_linked_to_my_university= BooleanField()
+    EU_proposal_writer = BooleanField()
+    EU_project_leader = BooleanField()
+    EU_project_member =BooleanField()
+    EU_project_evaluator = BooleanField()
+    Knowledge_Transfer =BooleanField()
+    Coordinated_projects_and_calls = StringField(filters=[strip_filter])
+    Founder_of_a_spin_off = BooleanField()
+    Member_of_a_spin_off= BooleanField()
+    Patents= BooleanField()
+    Member_of_an_Industrial_Chair= BooleanField()
     profile_please_indicate_the_full_name_of_your_research_group_in_english=StringField(filters=[strip_filter])
     projects_other = BooleanField()
     projects_other_response = StringField(filters=[strip_filter])
     projects_affiliated_relevant_associations_platforms_clusters = StringField(filters=[strip_filter])
     
     # profile research_groups tabs
-    research_group_are_you_interested_in_participating_in_building_joint_research_groups_centered_around_shared_research_disciplines_within_ulysseus_partner_universities = BooleanField()
-    research_group_most_relevant_to_your_research = StringField(filters=[strip_filter])
-    research_group_information_on_the_most_significant_projects = StringField(filters=[strip_filter])
+    Interest_in_Joint_Research_Groups = BooleanField()
+    Relevant_publications = StringField(filters=[strip_filter])
+    Relevant_projects = StringField(filters=[strip_filter])
     
     # profile consent tabs
     consent_by_providing_my_consent =BooleanField()
-    consent_profile_privacy_level =BooleanField()
+    Visibility =BooleanField()
 
     def validate_username(self, field):
         """Wrap username validator for WTForms."""
