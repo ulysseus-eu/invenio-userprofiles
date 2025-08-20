@@ -25,68 +25,68 @@ class UserProfileProxy:
 
     # profile main tabs
     keys_profile_main_tabs = [
-    "Gender",
+    "gender",
     "email",
     "University",
-    "Others_initiatives",
-    "Affiliation_to_entities",
+    "others_initiatives",
+    "affiliation_to_entities",
     "family_name",
     "given_name",
     "orcid",
     "linkedin",
     "profile_links",
-    "Faculty_Center_Institute",
-    "Department",
-    "Research_Group_member",
-    "Career_stage",
-    "Additional_Keywords",
-    "Principal_Investigator",
-    "Research_Group_PI",
-    "Languages",
-    "Expert_profile",
+    "faculty_center_institute",
+    "department",
+    "research_group_member",
+    "career_stage",
+    "additional_keywords",
+    "principal_investigator",
+    "research_group_pi",
+    "languages",
+    "expert_profile",
     "profile_please_indicate_the_full_name_of_your_research_group_in_english",
-    "Areas_of_expertise",
-    "Main_Keywords",
-    "TRL_level",
+    "areas_of_expertise",
+    "main_keywords",
+    "trl_level",
     ]
-    
+
     # profile projects tabs
     keys_profile_projects_tabs = [
-    "EU_proposal_writer",
-    "EU_project_leader",
-    "Coordinated_projects_and_calls",
-    "EU_project_member",
-    "EU_project_evaluator",
-    "Knowledge_Transfer",
-    "Founder_of_a_spin_off",
-    "Member_of_a_spin_off",
-    "Patents",
-    "Member_of_an_Industrial_Chair",
+    "eu_proposal_writer",
+    "eu_project_leader",
+    "coordinated_projects_and_calls",
+    "eu_project_member",
+    "eu_project_evaluator",
+    "knowledge_transfer",
+    "founder_of_a_spin_off",
+    "member_of_a_spin_off",
+    "patents",
+    "member_of_an_industrial_chair",
     "projects_other",
     "projects_other_response",
     "projects_affiliated_relevant_associations_platforms_clusters",
     ]
-    
+
     # profile research_groups tabs
     keys_profile_research_groups_tabs = [
-    "Interest_in_Joint_Research_Groups",
-    "Relevant_publications",
-    "Relevant_projects",
+    "interest_in_joint_research_groups",
+    "relevant_publications",
+    "relevant_projects",
     ]
-    
+
     # profile consent tabs
     keys_profile_consent_tabs = [
     "consent_by_providing_my_consent",
-    "Visibility",
+    "visibility",
     ]
 
     _profile_attrs = ["full_name", "affiliations"]
-    
+
     _profile_attrs.extend(keys_profile_main_tabs)
     _profile_attrs.extend(keys_profile_projects_tabs)
     _profile_attrs.extend(keys_profile_research_groups_tabs)
     _profile_attrs.extend(keys_profile_consent_tabs)
-    
+
     _preferences_attrs = ["email_visibility", "visibility", "locale", "timezone"]
     _read_only_attrs = ["email_repeat"]
     _aliases = {"email_repeat": "email", "user_id": "id"}

@@ -81,56 +81,56 @@ class ProfileForm(FlaskForm):
         validators=[Length(max=255)],
         filters=[strip_filter],
     )
-    
+
     family_name = StringField(filters=[strip_filter])
     given_name = StringField(filters=[strip_filter])
     email = StringField(filters=[strip_filter])
-    Others_initiatives = StringField(filters=[strip_filter])
-    
+    others_initiatives = StringField(filters=[strip_filter])
+
     orcid = StringField(filters=[strip_filter])
     linkedin = StringField(filters=[strip_filter])
-    
-    Affiliation_to_entities = StringField(filters=[strip_filter])
-    Gender = StringField(filters=[strip_filter])
-    University = StringField(filters=[strip_filter])
+
+    affiliation_to_entities = StringField(filters=[strip_filter])
+    gender = StringField(filters=[strip_filter])
+    university = StringField(filters=[strip_filter])
     profile_links = StringField(filters=[strip_filter])
-    Languages =  StringField(filters=[strip_filter])
-    Expert_profile =  StringField(filters=[strip_filter])
-    Faculty_Center_Institute =  StringField(filters=[strip_filter])
-    Department = StringField(filters=[strip_filter])
-    Career_stage =  StringField(filters=[strip_filter])
-    Research_Group_member = BooleanField()
-    Additional_Keywords = StringField(filters=[strip_filter])
-    Areas_of_expertise = StringField(filters=[strip_filter])
-    Main_Keywords = StringField(filters=[strip_filter])
-    TRL_level =  StringField(filters=[strip_filter])
-    Research_Group_PI =  BooleanField()
-    Principal_Investigator  =  StringField(filters=[strip_filter])
-    
+    languages =  StringField(filters=[strip_filter])
+    expert_profile =  StringField(filters=[strip_filter])
+    faculty_center_institute =  StringField(filters=[strip_filter])
+    department = StringField(filters=[strip_filter])
+    career_stage =  StringField(filters=[strip_filter])
+    research_group_member = BooleanField()
+    additional_keywords = StringField(filters=[strip_filter])
+    areas_of_expertise = StringField(filters=[strip_filter])
+    main_keywords = StringField(filters=[strip_filter])
+    trl_level =  StringField(filters=[strip_filter])
+    research_group_pi =  BooleanField()
+    principal_investigator  =  StringField(filters=[strip_filter])
+
     # profile projects tabs
-    EU_proposal_writer = BooleanField()
-    EU_project_leader = BooleanField()
-    EU_project_member =BooleanField()
-    EU_project_evaluator = BooleanField()
-    Knowledge_Transfer =BooleanField()
-    Coordinated_projects_and_calls = StringField(filters=[strip_filter])
-    Founder_of_a_spin_off = BooleanField()
-    Member_of_a_spin_off= BooleanField()
-    Patents= BooleanField()
-    Member_of_an_Industrial_Chair= BooleanField()
+    eu_proposal_writer = BooleanField()
+    eu_project_leader = BooleanField()
+    eu_project_member =BooleanField()
+    eu_project_evaluator = BooleanField()
+    knowledge_transfer =BooleanField()
+    coordinated_projects_and_calls = StringField(filters=[strip_filter])
+    founder_of_a_spin_off = BooleanField()
+    member_of_a_spin_off= BooleanField()
+    patents= BooleanField()
+    member_of_an_industrial_chair= BooleanField()
     profile_please_indicate_the_full_name_of_your_research_group_in_english=StringField(filters=[strip_filter])
     projects_other = BooleanField()
     projects_other_response = StringField(filters=[strip_filter])
     projects_affiliated_relevant_associations_platforms_clusters = StringField(filters=[strip_filter])
-    
+
     # profile research_groups tabs
-    Interest_in_Joint_Research_Groups = BooleanField()
-    Relevant_publications = StringField(filters=[strip_filter])
-    Relevant_projects = StringField(filters=[strip_filter])
-    
+    interest_in_joint_research_groups = BooleanField()
+    relevant_publications = StringField(filters=[strip_filter])
+    relevant_projects = StringField(filters=[strip_filter])
+
     # profile consent tabs
     consent_by_providing_my_consent =BooleanField()
-    Visibility =BooleanField()
+    visibility =BooleanField()
 
     def validate_username(self, field):
         """Wrap username validator for WTForms."""
