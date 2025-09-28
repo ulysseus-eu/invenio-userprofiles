@@ -77,7 +77,6 @@ class UserProfileProxy:
     # profile consent tabs
     keys_profile_consent_tabs = [
     "consent_by_providing_my_consent",
-    "visibility",
     ]
 
     _profile_attrs = ["full_name", "affiliations"]
@@ -87,7 +86,7 @@ class UserProfileProxy:
     _profile_attrs.extend(keys_profile_research_groups_tabs)
     _profile_attrs.extend(keys_profile_consent_tabs)
 
-    _preferences_attrs = ["email_visibility", "visibility", "locale", "timezone"]
+    _preferences_attrs = ["email_visibility", "visibility", "profile_visibility", "locale", "timezone"]
     _read_only_attrs = ["email_repeat"]
     _aliases = {"email_repeat": "email", "user_id": "id"}
 

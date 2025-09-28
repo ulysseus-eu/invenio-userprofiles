@@ -9,6 +9,9 @@
 
 """User profiles module for Invenio."""
 
+import importlib.metadata as m
+from sys import version_info
+
 from flask_menu import current_menu
 from invenio_i18n import LazyString
 from invenio_i18n import lazy_gettext as _
@@ -17,6 +20,37 @@ from invenio_theme.proxies import current_theme_icons
 from . import config
 from .api import current_userprofile
 from .forms import confirm_register_form_factory, register_form_factory
+
+
+def entry_points(group):
+    """Entry points."""
+    if version_info < (3, 10):
+        eps = m.entry_points()
+        # the only reason to add this check is to simplify the tests! the tests
+        # are implemented against python >=3.10 which uses the group keyword.
+        # since we drop python3.9 soon, this should work!
+        # in the tests there is a line which patches the return value of
+        # importlib.metadata.entry_points with a list. this works for
+        # python>=3.10 but not for 3.9
+        # the return value of .get can contain duplicates. the simplest way to
+        # remove is the set() call, to still return a list, list() is called on
+        # set()
+        if isinstance(eps, dict):
+            eps = list(set(eps.get(group, [])))
+    else:
+        eps = m.entry_points(group=group)
+
+    return eps
+
+
+def _register_entry_point(registry, ep_name):
+    """Load entry points into the given registry."""
+    for ep in entry_points(group=ep_name):
+        # Entry point has the action as the name (e.g. invenio_users_resources.moderation.actions.block = ... , 'block' is the name)
+        action_name = ep.name
+        action = ep.load()
+        assert callable(action)
+        registry.setdefault(action_name, []).append(action)
 
 
 class InvenioUserProfiles(object):
@@ -33,7 +67,7 @@ class InvenioUserProfiles(object):
 
         # Register current_profile
         app.context_processor(lambda: dict(current_userprofile=current_userprofile))
-
+        self.init_actions_registry()
         app.extensions["invenio-userprofiles"] = self
 
     def init_config(self, app):
@@ -72,6 +106,14 @@ class InvenioUserProfiles(object):
             app.config["SECURITY_REGISTER_USER_TEMPLATE"] = (
                 "invenio_userprofiles/register_user.html"
             )
+
+    def init_actions_registry(self):
+        """Initialises moderation actions registry."""
+        self.actions_registry = {}
+        _register_entry_point(
+            self.actions_registry,
+            "invenio_userprofiles.profile_update.actions",
+        )
 
 
 def finalize_app(app):

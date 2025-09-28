@@ -129,8 +129,7 @@ class ProfileForm(FlaskForm):
     relevant_projects = StringField(filters=[strip_filter])
 
     # profile consent tabs
-    consent_by_providing_my_consent =BooleanField()
-    visibility =BooleanField()
+    consent_by_providing_my_consent = BooleanField()
 
     def validate_username(self, field):
         """Wrap username validator for WTForms."""
@@ -260,6 +259,19 @@ class PreferencesForm(FlaskForm):
         description=_(
             "Public profiles can be found by other users via searches on "
             "username, full name and affiliation. Hidden profiles cannot be"
+            " found by other users."
+        ),
+    )
+
+    profile_visibility = RadioField(
+        _("Profile details visibility"),
+        choices=[
+            ("public", _("Public")),
+            ("restricted", _("Hidden")),
+        ],
+        description=_(
+            "Public profile details can be found by logged users via searches on "
+            "profile details. Hidden profiles cannot be"
             " found by other users."
         ),
     )

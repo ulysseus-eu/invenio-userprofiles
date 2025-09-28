@@ -24,7 +24,9 @@ from flask import (
 from flask_login import current_user, login_required
 from flask_security.confirmable import send_confirmation_instructions
 from invenio_db import db
+from invenio_records_resources.services.uow import TaskOp, unit_of_work
 from invenio_i18n import lazy_gettext as _
+from .tasks import execute_user_profile_update_actions
 
 from .forms import EmailProfileForm, PreferencesForm, ProfileForm, VerificationForm
 from .models import UserProfileProxy
@@ -113,7 +115,8 @@ def handle_verification_form(form):
     flash(_("Verification email sent."), category="success")
 
 
-def handle_profile_form(form):
+@unit_of_work()
+def handle_profile_form(form, uow=None):
     """Handle profile update form."""
     email_changed = False
     datastore = current_app.extensions["security"].datastore
@@ -126,6 +129,8 @@ def handle_profile_form(form):
         form.populate_obj(current_user)
         db.session.add(current_user)
         datastore.mark_changed(id(db.session), uid=current_user.id)
+        current_app.extensions["security"].datastore.commit()
+        uow.register(TaskOp(execute_user_profile_update_actions, user_id=current_user.id, action="update_owned_persons"))
     datastore.commit()
 
     if email_changed:
@@ -143,10 +148,13 @@ def handle_profile_form(form):
         flash(_("Profile was updated."), category="success")
 
 
-def handle_preferences_form(form):
+@unit_of_work()
+def handle_preferences_form(form, uow=None):
     """Handle preferences form."""
     form.populate_obj(current_user)
     db.session.add(current_user)
+    current_app.extensions["security"].datastore.commit()
+    uow.register(TaskOp(execute_user_profile_update_actions, user_id=current_user.id, action="update_owned_persons"))
     current_app.extensions["security"].datastore.commit()
     # NOTE: Flash message after successful update of profile.
     flash(_("Preferences were updated."), category="success")
