@@ -139,8 +139,9 @@ def handle_profile_form(form, uow=None):
         flash(
             _(
                 "Profile was updated. We have sent a verification "
-                "email to {email}. Please check it."
-            ).format(email=current_user.email.lower()),
+                "email to %(email)s. Please check it.",
+                email=current_user.email.lower(),
+            ),
             category="success",
         )
     else:
