@@ -25,58 +25,57 @@ class UserProfileProxy:
 
     # profile main tabs
     keys_profile_main_tabs = [
-    "gender",
-    "email",
-    "University",
-    "others_initiatives",
-    "affiliation_to_entities",
-    "family_name",
-    "given_name",
-    "orcid",
-    "linkedin",
-    "profile_links",
-    "faculty_center_institute",
-    "department",
-    "research_group_member",
-    "career_stage",
-    "additional_keywords",
-    "principal_investigator",
-    "research_group_pi",
-    "languages",
-    "expert_profile",
-    "profile_please_indicate_the_full_name_of_your_research_group_in_english",
-    "areas_of_expertise",
-    "main_keywords",
-    "trl_level",
+        "gender",
+        "email",
+        "university",
+        "others_initiatives",
+        "family_name",
+        "given_name",
+        "orcid",
+        "linkedin",
+        "profile_links",
+        "faculty_center_institute",
+        "department",
+        "research_group_member",
+        "career_stage",
+        "additional_keywords",
+        "principal_investigator",
+        "research_group_pi",
+        "languages",
+        "expert_profile",
+        "profile_please_indicate_the_full_name_of_your_research_group_in_english",
+        "areas_of_expertise",
+        "main_keywords",
+        "trl_level",
     ]
 
     # profile projects tabs
     keys_profile_projects_tabs = [
-    "eu_proposal_writer",
-    "eu_project_leader",
-    "coordinated_projects_and_calls",
-    "eu_project_member",
-    "eu_project_evaluator",
-    "knowledge_transfer",
-    "founder_of_a_spin_off",
-    "member_of_a_spin_off",
-    "patents",
-    "member_of_an_industrial_chair",
-    "projects_other",
-    "projects_other_response",
-    "projects_affiliated_relevant_associations_platforms_clusters",
+        "eu_proposal_writer",
+        "eu_project_leader",
+        "coordinated_projects_and_calls",
+        "eu_project_member",
+        "eu_project_evaluator",
+        "knowledge_transfer",
+        "founder_of_a_spin_off",
+        "member_of_a_spin_off",
+        "patents",
+        "member_of_an_industrial_chair",
+        "projects_other",
+        "projects_other_response",
+        "projects_affiliated_relevant_associations_platforms_clusters",
     ]
 
     # profile research_groups tabs
     keys_profile_research_groups_tabs = [
-    "interest_in_joint_research_groups",
-    "relevant_publications",
-    "relevant_projects",
+        "interest_in_joint_research_groups",
+        "relevant_publications",
+        "relevant_projects",
     ]
 
     # profile consent tabs
     keys_profile_consent_tabs = [
-    "consent_by_providing_my_consent",
+        "consent_by_providing_my_consent",
     ]
 
     _profile_attrs = ["full_name", "affiliations"]
@@ -108,8 +107,8 @@ class UserProfileProxy:
         """."""
         if attr == "email":
             if (
-                current_app.config["USERPROFILES_EMAIL_ENABLED"]
-                and self._user.email != value
+                    current_app.config["USERPROFILES_EMAIL_ENABLED"]
+                    and self._user.email != value
             ):
                 self._user.email = value
                 self._user.confirmed_at = None

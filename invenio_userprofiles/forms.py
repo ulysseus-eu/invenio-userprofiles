@@ -88,7 +88,6 @@ class ProfileForm(FlaskForm):
     orcid = StringField(filters=[strip_filter])
     linkedin = StringField(filters=[strip_filter])
 
-    affiliation_to_entities = StringField(filters=[strip_filter])
     gender = StringField(filters=[strip_filter])
     university = StringField(filters=[strip_filter])
     profile_links = StringField(filters=[strip_filter])

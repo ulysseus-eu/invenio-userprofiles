@@ -129,9 +129,8 @@ def handle_profile_form(form, uow=None):
         form.populate_obj(current_user)
         db.session.add(current_user)
         datastore.mark_changed(id(db.session), uid=current_user.id)
-        current_app.extensions["security"].datastore.commit()
-        uow.register(TaskOp(execute_user_profile_update_actions, user_id=current_user.id, action="update_owned_persons"))
     datastore.commit()
+    uow.register(TaskOp(execute_user_profile_update_actions, user_id=current_user.id, action="update_owned_persons"))
 
     if email_changed:
         send_confirmation_instructions(current_user)
@@ -156,6 +155,5 @@ def handle_preferences_form(form, uow=None):
     db.session.add(current_user)
     current_app.extensions["security"].datastore.commit()
     uow.register(TaskOp(execute_user_profile_update_actions, user_id=current_user.id, action="update_owned_persons"))
-    current_app.extensions["security"].datastore.commit()
     # NOTE: Flash message after successful update of profile.
     flash(_("Preferences were updated."), category="success")
