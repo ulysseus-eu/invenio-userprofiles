@@ -26,7 +26,6 @@ class UserProfileProxy:
     # profile main tabs
     keys_profile_main_tabs = [
         "gender",
-        "email",
         "university",
         "others_initiatives",
         "family_name",

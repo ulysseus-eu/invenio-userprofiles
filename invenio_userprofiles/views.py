@@ -9,7 +9,6 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Invenio module that adds userprofiles to the platform."""
-
 from warnings import warn
 
 from flask import (
