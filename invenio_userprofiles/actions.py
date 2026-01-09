@@ -77,36 +77,17 @@ def on_profile_created(user_id, uow=None):
                 request_id = None
                 request_list = []
                 if existing_invitations.total == 0:
-                    current_app.logger.warning(f"Invitation for community {new_community['id']} not found for user : {user_id}")
                     request_list = current_communities.service.members.invite(
                         system_identity, new_community["id"],
                         invitation_data,
                         uow=uow
                     )
-                    current_app.logger.warning(f"Invitation for community {new_community['id']} sent for user : {user_id}")
-                    # for i_attempt in range(10):
-                    #     current_app.logger.warning(
-                    #         f"Attempt {i_attempt} to find invitation for community {new_community['id']} and user : {user_id}")
-                    #     existing_invitations = current_communities.service.members.search_invitations(
-                    #         system_identity,
-                    #         new_community["id"],
-                    #         q=f"{user.username}",
-                    #         is_open=True
-                    #     )
-                    #     if existing_invitations.total > 0:
-                    #         current_app.logger.warning(
-                    #             f"Invitation for community {new_community['id']} found for user : {user_id} at attempt {i_attempt}")
-                    #         break
-                    #     else:
-                    #         sleep(5)
                 if existing_invitations.total > 0 or len(request_list) > 0:
                     if existing_invitations.total > 0:
                         invitation_found = next(existing_invitations.hits)
                         request_id = invitation_found["request"]["id"]
-                        current_app.logger.warning(f"Invitation for community {new_community['id']} found for user : {user_id}")
                     if len(request_list) > 0:
                         request_id = request_list[0]["id"]
-                        current_app.logger.warning(f"Invitation for community {new_community['id']} in request for user : {user_id}")
 
                     current_requests_service.execute_action(
                         system_identity,
@@ -115,14 +96,11 @@ def on_profile_created(user_id, uow=None):
                         uow=uow,
                         expand=True
                     )
-                    current_app.logger.warning(f"Invitation for community {new_community['id']} accepted for user : {user_id}")
-                else:
-                    current_app.logger.warning(f"Invitation for community {new_community['id']} still not found for user : {user_id}")
 
             except AlreadyMemberError:
                 pass
             except Exception as e:
-                current_app.logger.warning(f"Error while creating community for user : {user_id} : {e}")
+                current_app.logger.error(f"Error while creating community for user : {user_id} : {e}")
                 raise e
 
 
@@ -169,23 +147,18 @@ def on_profile_updated(user_id, uow=None, **kwargs):
             "family_name": profile.family_name,
             "user_id": str(user_id)
         }
-        current_app.logger.warning(f"Entered in on_profile_updated for user : {user_id}")
         if my_communities_res.total == 0:
-            current_app.logger.warning(f"There is no community for user : {user_id}")
             on_profile_created(user_id, uow)
         # If the person community for this user exists
         # make sure we update it with last details
         else:
             my_owned_community = next(my_communities_res.hits)
-            current_app.logger.warning(f"There is at least one community {my_owned_community['id']} for user : {user_id}")
             current_communities.service.update(
                 system_identity,
                 my_owned_community["id"],
                 create_community(community_base_data),
                 uow=uow
             )
-            current_app.logger.warning(f"Community {my_owned_community['id']} updated for user : {user_id}")
             # Reindex person community for both profile updates and metadata updates
             # refresh owned communities filter to include any possibly newly created community
             current_communities.service.reindex(system_identity, extra_filter=my_communities_q)
-            current_app.logger.warning(f"Community {my_owned_community['id']} reindexed for user : {user_id}")
