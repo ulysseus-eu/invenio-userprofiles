@@ -153,3 +153,11 @@ def init_menu(app):
         ),
         order=0,
     )
+    current_menu.submenu("settings.preferences").register(
+        endpoint="invenio_userprofiles.preferences",
+        text=_(
+            "%(icon)s Preferences",
+            icon=LazyString(lambda: f'<i class="{current_theme_icons.eye}"></i>'),
+        ),
+        order=1,
+    )

@@ -47,6 +47,7 @@ def create_blueprint(app):
         return UserProfileProxy.get_by_userid(int(value))
 
     blueprint.add_url_rule("/profile", view_func=profile, methods=["GET", "POST"])
+    blueprint.add_url_rule("/preferences", view_func=preferences, methods=["GET", "POST"])
 
     return blueprint
 
@@ -57,9 +58,6 @@ def profile():
     # Create forms
     verification_form = VerificationForm(formdata=None, prefix="verification")
     profile_form = profile_form_factory()
-    preferences_form = PreferencesForm(
-        formdata=None, obj=current_user, prefix="preferences"
-    )
 
     # Pick form
     is_read_only = current_app.config.get("USERPROFILES_READ_ONLY", False)
@@ -70,9 +68,6 @@ def profile():
     elif form_name == "verification":
         handle_form = handle_verification_form
         form = verification_form
-    elif form_name == "preferences":
-        handle_form = handle_preferences_form
-        form = preferences_form
     else:
         form = None
 
@@ -87,6 +82,35 @@ def profile():
         current_app.config["USERPROFILES_PROFILE_TEMPLATE"],
         verification_form=verification_form,
         profile_form=profile_form,
+    )
+
+
+@login_required
+def preferences():
+    """View for editing preferences."""
+    # Create forms
+    preferences_form = PreferencesForm(
+        formdata=None, obj=current_user, prefix="preferences"
+    )
+
+    # Pick form
+    is_read_only = current_app.config.get("USERPROFILES_READ_ONLY", False)
+    form_name = request.form.get("submit", None)
+    if form_name == "preferences":
+        handle_form = handle_preferences_form
+        form = preferences_form
+    else:
+        form = None
+
+    # Process form
+    if form:
+        form.process(formdata=request.form)
+        if form.validate_on_submit():
+            handle_form(form)
+            return redirect(url_for(".preferences"), code=303)  # this endpoint
+
+    return render_template(
+        current_app.config["USERPROFILES_PREFERENCES_TEMPLATE"],
         preferences_form=preferences_form,
     )
 

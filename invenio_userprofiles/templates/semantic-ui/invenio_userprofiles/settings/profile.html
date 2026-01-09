@@ -74,39 +74,4 @@
     {%- endblock settings_body %}
     </section>
 
-  <section aria-label="{{ _('Preferences') }}" class="ui segments">
-    <div class="ui segment secondary">
-      <i class="sliders horizontal icon" aria-hidden="true"></i>
-      <h2 class="ui tiny header inline-block m-0">
-        {{ _("Preferences") }}
-      </h2>
-    </div>
-
-    <div class="ui segment">
-      {%- set form = preferences_form %}
-
-      <form {% if not read_only %}method="POST"{% endif %} name="preferences_form" class="ui form">
-        {%- for field in form %}
-          {%- if field.widget.input_type == 'hidden' %}
-            {{ field() }}
-          {%- elif field.type == 'SelectField' %}
-            {{ render_field(field, field_class="ui dropdown") }}
-          {%- else %}
-            {{ render_field(field, placeholder=field.label.text, field_class="form-control no-dots-list pl-0") }}
-          {%- endif %}
-        {%- endfor %}
-
-        <div class="form-actions">
-          <a role="button" href="{{ url_for('invenio_userprofiles.profile') }}" class="ui labeled icon button">
-            <i class="close icon" aria-hidden="true"></i>
-            {{ _('Cancel') }}
-          </a>
-          <button type="submit" name="submit" value="preferences" class="ui primary labeled icon button">
-            <i class="check icon" aria-hidden="true"></i>
-            {{ _('Update preferences') }}
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
 {% endblock %}

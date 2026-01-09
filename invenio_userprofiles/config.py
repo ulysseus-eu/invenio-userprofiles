@@ -20,6 +20,9 @@ USERPROFILES_EXTEND_SECURITY_FORMS = False
 USERPROFILES_PROFILE_TEMPLATE = "invenio_userprofiles/settings/profile.html"
 """Default profile template."""
 
+USERPROFILES_PREFERENCES_TEMPLATE = "invenio_userprofiles/settings/preferences.html"
+"""Default preferences template."""
+
 USERPROFILES_PROFILE_URL = "/account/settings/profile/"
 """Default profile URL endpoint."""
 

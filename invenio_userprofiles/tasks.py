@@ -1,3 +1,5 @@
+import traceback
+
 from celery import shared_task
 from flask import current_app
 from invenio_cache.lock import CachedMutex
@@ -9,7 +11,7 @@ from werkzeug.local import LocalProxy
 
 @shared_task(ignore_result=True, acks_late=True, retry=True)
 def execute_user_profile_update_actions(user_id=None, action=None):
-    """Execute moderation actions.
+    """Execute user profile actions.
 
     Callbacks share the same UOW to guarantee data consistency.
     If any callback fails, then the error is logged and the UOW rolledback.
@@ -62,8 +64,9 @@ def execute_user_profile_update_actions(user_id=None, action=None):
             # Commit the uow when all the callbacks succeeded
             uow.commit()
         except Exception as e:
+            tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__)) if str(e) == '' else str(e)
             current_app.logger.warning(
-                f"Could not execute action '{action}' for user: {e}"
+                f"Could not execute action '{action}' for user: {tb_str}"
             )
             # If a callback fails, rollback the operation and stop processing callbacks
             uow.rollback()
