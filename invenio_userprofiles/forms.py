@@ -96,13 +96,10 @@ class ProfileForm(FlaskForm):
     faculty_center_institute =  StringField(filters=[strip_filter])
     department = StringField(filters=[strip_filter])
     career_stage =  StringField(filters=[strip_filter])
-    research_group_member = BooleanField()
     additional_keywords = StringField(filters=[strip_filter])
     areas_of_expertise = StringField(filters=[strip_filter])
     main_keywords = StringField(filters=[strip_filter])
     trl_level =  StringField(filters=[strip_filter])
-    research_group_pi =  BooleanField()
-    principal_investigator  =  StringField(filters=[strip_filter])
 
     # profile projects tabs
     eu_proposal_writer = BooleanField()
@@ -115,7 +112,6 @@ class ProfileForm(FlaskForm):
     member_of_a_spin_off= BooleanField()
     patents= BooleanField()
     member_of_an_industrial_chair= BooleanField()
-    profile_please_indicate_the_full_name_of_your_research_group_in_english=StringField(filters=[strip_filter])
     projects_other = BooleanField()
     projects_other_response = StringField(filters=[strip_filter])
     projects_affiliated_relevant_associations_platforms_clusters = StringField(filters=[strip_filter])
