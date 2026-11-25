@@ -118,6 +118,8 @@ class ProfileForm(FlaskForm):
 
     # profile research_groups tabs
     interest_in_joint_research_groups = BooleanField()
+    coil_participation = BooleanField()
+    research_with_us = BooleanField()
     relevant_publications = StringField(filters=[strip_filter])
     relevant_projects = StringField(filters=[strip_filter])
 

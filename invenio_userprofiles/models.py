@@ -64,6 +64,8 @@ class UserProfileProxy:
     # profile research_groups tabs
     keys_profile_research_groups_tabs = [
         "interest_in_joint_research_groups",
+        "coil_participation",
+        "research_with_us",
         "relevant_publications",
         "relevant_projects",
     ]

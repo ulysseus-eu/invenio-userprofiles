@@ -76,7 +76,7 @@ def profile():
         form.process(formdata=request.form)
         if form.validate_on_submit():
             handle_form(form)
-            return redirect(url_for(".profile"), code=303)  # this endpoint
+            return redirect(url_for("invenio_userprofiles.profile"), code=303)  # this endpoint
 
     return render_template(
         current_app.config["USERPROFILES_PROFILE_TEMPLATE"],
